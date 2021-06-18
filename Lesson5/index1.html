@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess Board</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        tr {
+            width: 30px;
+            height: 30px;
+        }
+        td {
+            border: 1px solid #888888;
+            width: 30px;
+            height: 30px;
+            background-color: #EEEEEE;
+            text-align:center
+        }
+    </style>
+</head>
+<body>
+<table id="game"></table>
+
+<script>
+
+    function board() {
+        const game = {
+            rows: 9,
+            cols: 9,
+        };
+
+        const board = document.getElementById('game');
+
+        for (let i = 0; i < game.rows; i++) {
+            const tr = document.createElement('tr');
+            board.appendChild(tr);
+            for (let k = 0; k < game.cols; k++) {
+                const td = document.createElement('td');
+                if (k % 2 === 0 && i % 2 === 0) {
+                    td.style.backgroundColor ="black";
+                } else {
+                    td.style.backgroundColor ="white";
+                }
+                tr.appendChild(td);
+                if (k % 2 !== 0 && i % 2 !== 0) {
+                    document.getElementById('game:last-child');
+                    td.style.backgroundColor ="black";
+                }
+            }
+        }
+
+        for (let i = 1; i < game.rows; i++) {
+            let ftd = document.getElementById('game').getElementsByTagName('tr')[i].getElementsByTagName('td')[0];
+            let number = document.createTextNode(game.rows-i);
+            ftd.style.backgroundColor ="white";
+            ftd.appendChild(number);
+        }
+
+        for (let i = 1; i < game.rows; i++) {
+            let ftr = document.getElementById('game').getElementsByTagName('tr')[0].getElementsByTagName('td')[i];
+            ftr.style.backgroundColor ="white";
+            const chrs = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+            let chrsn = document.createTextNode(chrs[i-1]);
+            ftr.appendChild(chrsn);
+        }
+    }
+
+    board();
+</script>
+
+</body>
+</html>
